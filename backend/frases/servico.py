@@ -9,8 +9,6 @@ DESCRICAO = "serviço que gerencia os feeds de produto"
 VERSAO = "1.0.0"
 AUTOR = "Otiliano R. de S. Junior"
 
-URL_TOTAL_DE_LIKES = "http://likes:5000/total_likes/"
-
 MYSQL_SERVER = "bancodados"
 MYSQL_USER = "root"
 MYSQL_PASS = "admin"
@@ -20,14 +18,14 @@ ALIVE = "yes"
 DEBUG = True
 TAMANHO_PAGINA = 3
 
+
 def get_conexao_bd():
-    try:
-        conexao = mysql.connect(
-            host=MYSQL_SERVER, user=MYSQL_USER, password=MYSQL_PASS, database=MYSQL_DB
-        )
-        return conexao
-    except Exception:
-        raise Exception
+
+    conexao = mysql.connect(
+        host=MYSQL_SERVER, user=MYSQL_USER, password=MYSQL_PASS, database=MYSQL_DB
+    )
+    return conexao
+
 
 @servico.route("/is_alive", methods=["GET"])
 def is_alive():

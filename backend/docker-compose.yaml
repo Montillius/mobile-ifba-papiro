@@ -1,16 +1,16 @@
 version: '3'
 services:
-  feeds:
-    image: marcas
+  frases:
+    image: frases
     build: ./dockerfiles/servicos/
-    hostname: feeds
+    hostname: frases
     expose:
       - '5000'
     volumes:
-      - './feeds:/servico'
+      - './frases:/servico'
     command: python3 servico.py
     networks:
-      marcasnet:
+      papironet:
         ipv4_address: 172.29.1.1
   bancodados:
     image: mysql
@@ -20,7 +20,7 @@ services:
     environment:
       - MYSQL_ROOT_PASSWORD=admin
     networks:
-      marcasnet:
+      papironet:
         ipv4_address: 172.29.1.2
   arquivos:
     image: arquivos
@@ -31,10 +31,10 @@ services:
     expose:
       - '80'
     networks:
-      marcasnet:
+      papironet:
         ipv4_address: 172.29.1.3
 networks:
-  marcasnet:
+  papironet:
     ipam:
       driver: default
       config:
