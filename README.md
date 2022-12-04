@@ -29,3 +29,6 @@ sudo npm install -g expo-cli
 - caso acontece algum erro na hora de iniciar o projeto 
 - o usuário tem que coinferir qual sua versão do node está instalada, pois é possível 
 - que haja incompatibilidade
+
+No smartphone fazer o download do aplicativo EXPO-GO
+- é preciso permitir a utilização da câmera do celular para ler o QRCODE
