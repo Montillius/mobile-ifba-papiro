@@ -46,8 +46,7 @@ def gerar_frase(result):
         "_id": result["frases_id"],
         "autor": result["autor_id"],
         "frase": result["frase"],
-        "company": {
-            "id": result["autor_id"],
+        "dados_autor": {
             "nome": result["autor_nome"],
             "data_nascimento": result["autor_nascimento"],
             "genero": result["autor_genero"],
@@ -57,21 +56,23 @@ def gerar_frase(result):
 
     return frase
 
-
-@servico.route("/frases/<int:pagina>/<int:TAMANHO_PAGINA>")
-def get_frases(pagina, TAMANHO_PAGINA):
+@servico.route("/frases/<int:pagina>/")
+def get_frases(pagina):
     frases = []
 
     conexao = get_conexao_bd()
     cursor = conexao.cursor(dictionary=True)
     cursor.execute(
-        "SELECT dtb_frases.id_frase as frases_id," +
-        "dtb_frases.id_autor as autor_id, dtb_frases.frase as frase," +
-        "dtb_autor.nome as autor_nome, DATE_FORMAT(dtb_autor.data_nascimento, '%Y-%m-%d') as autor_nascimento,"+
-        "dtb_autor.genero as autor_genero, dtb_autor.biografia as autor_biografia"
-        "FROM dtb_frases, dtb_autor" +
-        "WHERE dtb_autor.id_autor = dtb_frases.id_autor " +
-        "ORDER BY dtb_frases.id_frase desc " +
+        "SELECT "+
+            "b.nome as autor_nome, "+
+            "DATE_FORMAT(b.data_nascimento, '%Y-%m-%d') as autor_nascimento, "+
+            "b.genero as autor_genero, "+
+            "b.biografia as autor_biografia, "+
+            "a.id_frase as frases_id, "+
+            "a.frase, "+
+            "a.id_autor as autor_id "+
+        "FROM dtb_frases a "+ 
+        "JOIN dtb_autor b ON a.id_autor = b.id_autor " 
         "LIMIT " + str((pagina - 1) * TAMANHO_PAGINA) +
         ", " + str(TAMANHO_PAGINA)
     )

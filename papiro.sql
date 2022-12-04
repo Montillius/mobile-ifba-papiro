@@ -5,16 +5,6 @@
 DROP DATABASE IF EXISTS db_papiro; CREATE DATABASE db_papiro CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci; USE db_papiro;
 
 -- --------------------------------------------------------------------------
--- CRIAÇÃO TABELA DE FRASES
--- --------------------------------------------------------------------------
-  CREATE TABLE IF NOT EXISTS dtb_frases (
-    id_frase INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-    id_autor VARCHAR(20) DEFAULT NULL,
-    frase VARCHAR(500) DEFAULT NULL,
-    FOREIGN KEY (id_autor) REFERENCES dtb_autor (id_autor)
-  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-    
--- --------------------------------------------------------------------------
 -- CRIAÇÃO TABELA DE AUTORES
 -- --------------------------------------------------------------------------
   
@@ -23,14 +13,50 @@ DROP DATABASE IF EXISTS db_papiro; CREATE DATABASE db_papiro CHARACTER SET = utf
 	nome VARCHAR(200) DEFAULT NULL,
 	data_nascimento date DEFAULT NULL,
 	genero VARCHAR(100) DEFAULT NULL,
-	biografia VARCHAR(500) DEFAULT NULL
+	biografia VARCHAR(800) DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
 -- --------------------------------------------------------------------------
-
-
+-- CRIAÇÃO TABELA DE FRASES
+-- --------------------------------------------------------------------------
+  CREATE TABLE IF NOT EXISTS dtb_frases (
+    id_frase INT(11) UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    id_autor INT(11) DEFAULT NULL,
+    frase VARCHAR(500) DEFAULT NULL,
+    FOREIGN KEY (id_autor) REFERENCES dtb_autor (id_autor)
+  ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+    
 -- --------------------------------------------------------------------------
 -- INICIO INSERTS
 -- --------------------------------------------------------------------------
+
+
+-- --------------------------------------------------------------------------
+-- INSERT AUTORES
+-- --------------------------------------------------------------------------
+
+  INSERT INTO dtb_autor (id_autor, nome, data_nascimento, genero, biografia) VALUES
+  (1, 'Henry Ford *', '1947/04/07', 'Empreendedor e engenheiro mecânico', ' Fundador da Ford Motor Company, autor dos livros Minha filosofia de indústria e Minha vida e minha obra, e o primeiro empresário a aplicar a montagem em série de forma a produzir em massa automóveis em menos tempo e a um menor custo.'),
+  (2, 'Duke Ellington *', '1899/04/29', 'Compositor de jazz', ' Foi um compositor de jazz, pianista e líder de orquestra estadunidense eternizado com a alcunha de "The Duke" e distinguido com a Presidential Medal of Freedom em 1969 e com a Legião de Honra em 1973, sendo ambas as distinções as mais elevadas que um civil pode receber.'),
+  (3, 'Samuel Beckett *', '1906/04/13', 'Dramaturgo e escritor', ' Beckett é amplamente considerado como um dos escritores mais influentes do século XX. Fortemente influenciado por James Joyce, ele é considerado um dos últimos modernistas. '),
+  (4, 'Sócrates *', '399/02/15', 'Filósofo', 'Foi um filósofo ateniense do período clássico da Grécia Antiga. Creditado como um dos fundadores da filosofia ocidental, é até hoje uma figura enigmática, conhecida principalmente através dos relatos em obras de escritores que viveram mais tarde, especialmente dois de seus alunos.'),
+  (5, 'W. F. Grenfel *', '1865/02/28', 'Missionário', 'A Missão Nacional Real para Pescadores de Mar Profundo enviou Grenfell à Terra Nova em 1892 para melhorar a situação dos habitantes costeiros e pescadores. [2] Essa missão começou para valer em 1892 [3] quando ele recrutou duas enfermeiras e dois médicos para hospitais em Indian Harbour, Labrador e mais tarde abriu hospitais caseiros ao longo da costa de Labrador. A missão expandiu-se muito de seu mandato inicial para o desenvolvimento de escolas, um orfanato, cooperativas, projetos de trabalho industrial e trabalho social.'),
+  (6, 'Santo Agostinho *', '354/11/13', 'Teólogos', 'Aurélio Agostinho de Hipona, conhecido universalmente como Santo Agostinho, foi um dos mais importantes teólogos e filósofos nos primeiros séculos do cristianismo, cujas obras foram muito influentes no desenvolvimento do cristianismo e filosofia ocidental. Foi bispo de Hipona, uma cidade na província romana da África.'),
+  (7, 'Churton Collins *', '1848/03/26', 'Escritor', 'Foi um crítico literário e conferencista inglês.'),
+  (8, 'Jean-Paul Charles *', '1905/06/21', 'Filósofo', 'Foi um filósofo, escritor e crítico francês, conhecido como representante do existencialismo. Acreditava que os intelectuais têm de desempenhar um papel ativo na sociedade. Era um artista militante, e apoiou causas políticas de esquerda com a sua vida e a sua obra.'),
+  (9, 'Carl Sandburg *', '1878/01/06', 'Poeta', 'Foi um poeta, historiador, novelista e folclorista estadunidense. Nasceu em Galesburg, Illinois de uma família de suecos e morreu em Flat Rock, Carolina do Norte. Tornou-se conhecido por suas poesias e sua biografia de Abraham Lincoln, pelas quais recebeu o Prêmio Pulitzer.'),
+  (10, 'Walt Disney *', '1901/12/05', 'Empresário', 'Foi um animador, produtor de cinema e empresário americano. Pioneiro da indústria de animação americana, introduziu vários desenvolvimentos na produção de desenhos animados.'),
+  (11, 'Oscar Wilde *', '1854/10/16', 'Escritor', 'Oscar Fingal O Flahertie Wills Wilde, ou simplesmente Oscar Wilde, foi um influente escritor, poeta e dramaturgo irlandês.'),
+  (12, 'Abraham Lincoln *', '1809/02/12', 'Político', 'Foi um político norte-americano que serviu como o 16° presidente dos Estados Unidos, posto que ocupou de 4 de março de 1861 até seu assassinato em 15 de abril de 1865. Lincoln liderou o país de forma bem-sucedida durante sua maior crise interna, a Guerra Civil Americana, preservando a integridade territorial do país, abolindo a escravidão e fortalecendo o governo nacional.'),
+  (13, 'Napoleão Bonaparte *', '1769/08/15', 'Estadista e líder militar', 'Foi um estadista e líder militar francês que ganhou destaque durante a Revolução Francesa e liderou várias campanhas militares de sucesso durante as Guerras Revolucionárias Francesas. Foi imperador dos franceses como Napoleão I de 1804 a 1814 e brevemente em 1815 durante os Cem Dias.'),
+  (14, 'H. Jackson Brown Jr *', '1940/01/01', 'Escritor', 'Antes de se tornar escritor, atuou como diretor criativo de uma agência de publicidade em Nashville . Ele se formou na Emory University em 1962 e foi membro da fraternidade Sigma Chi . [5] Em 1991, ele foi homenageado como um "Significant Sig", um prêmio concedido pela organização a seus membros notáveis.'),
+  (15, 'Moliere *', '', 'Dramaturgo', 'Jean-Baptiste Poquelin, mais conhecido como Molière, foi um dramaturgo francês, além de actor e encenador, considerado um dos mestres da comédia satírica. Teve um papel de destaque na dramaturgia francesa, até então muito dependente da temática da mitologia grega'),
+  (16, 'R. H. Grant *', '1860/08/05', 'Político', 'Foi membro do United Farmer da Assembleia Legislativa de Ontário de 1919 a 1923. Ele representou a cavalgada de Carleton . Ele serviu como ministro de gabinete no governo de EC Drury . A Robert Grant Avenue, no bairro de Fernbank em Stittsville , recebeu o nome de Grant e seu pai. A área comercial de Grant Crossing, nas proximidades, também recebeu o nome da fazenda da família que já existiu no terreno.'),
+  (17, 'Michael Jordan', '1963/02/17', 'Ex-basquetebolista ', 'É considerado por muitos como o melhor jogador de basquete de todos os tempos e por muitos como um dos mais importantes desportistas masculinos da história.'),
+  (18, 'Steve Jobs *', '1955/02/24', 'Inventor', 'Foi um inventor, empresário e magnata americano no setor da informática. Notabilizou-se como co-fundador, presidente e diretor executivo da Apple Inc. e por revolucionar seis indústrias: computadores pessoais, filmes de animação, música, telefones, tablets e publicações digitais.'),
+  (19, 'Bill Gates', '1955/10/28', 'Empresário', 'William Henry Gates III, mais conhecido como Bill Gates, é um magnata, empresário, diretor executivo, investidor, filantropo e autor americano, que ficou conhecido por fundar, junto com Paul Allen a Microsoft, a maior e mais conhecida empresa de software do mundo em termos de valor de mercado.'),
+  (20, 'Albert Einstein', '1879/03/14', 'Cientista', 'Foi uma das mentes mais brilhantes da ciência, e o seu legado inclui a explicação do efeito fotoelétrico, a formulação da teoria da relatividade espacial geral e restrita, além de grandes contribuições para a Física Estatística, por meio de sua explicação para o movimento browniano.' );
+
 
 -- --------------------------------------------------------------------------
 -- INSERT EM FRASES
@@ -89,29 +115,3 @@ DROP DATABASE IF EXISTS db_papiro; CREATE DATABASE db_papiro CHARACTER SET = utf
   (50, 8, 'Tudo o que sei sobre a minha vida, ao que parece, aprendi em livros.'),
   (51, 8, 'O importante não é aquilo que fazem de nós, mas o que nós mesmos fazemos do que os outros fizeram de nós.'),
   (52, 7, 'Na vida o segredo do sucesso é conhecido apenas por aqueles que não são bem sucedidos.');
-  
--- --------------------------------------------------------------------------
--- INSERT AUTORES
--- --------------------------------------------------------------------------
-
-  INSERT INTO dtb_autor (id_autor, nome, data_nascimento, genero, biografia) VALUES
-  (1, 'Henry Ford *', '1947/04/07', 'Empreendedor e engenheiro mecânico', ' Fundador da Ford Motor Company, autor dos livros Minha filosofia de indústria e Minha vida e minha obra, e o primeiro empresário a aplicar a montagem em série de forma a produzir em massa automóveis em menos tempo e a um menor custo.'),
-  (2, 'Duke Ellington *', '1899/04/29', 'Compositor de jazz', ' Foi um compositor de jazz, pianista e líder de orquestra estadunidense eternizado com a alcunha de "The Duke" e distinguido com a Presidential Medal of Freedom em 1969 e com a Legião de Honra em 1973, sendo ambas as distinções as mais elevadas que um civil pode receber.'),
-  (3, 'Samuel Beckett *', '1906/04/13', 'Dramaturgo e escritor', ' Beckett é amplamente considerado como um dos escritores mais influentes do século XX. Fortemente influenciado por James Joyce, ele é considerado um dos últimos modernistas. '),
-  (4, 'Sócrates *', '399/02/15', 'Filósofo', 'Foi um filósofo ateniense do período clássico da Grécia Antiga. Creditado como um dos fundadores da filosofia ocidental, é até hoje uma figura enigmática, conhecida principalmente através dos relatos em obras de escritores que viveram mais tarde, especialmente dois de seus alunos.'),
-  (5, 'W. F. Grenfel *', '1865/02/28', 'Missionário', 'A Missão Nacional Real para Pescadores de Mar Profundo enviou Grenfell à Terra Nova em 1892 para melhorar a situação dos habitantes costeiros e pescadores. [2] Essa missão começou para valer em 1892 [3] quando ele recrutou duas enfermeiras e dois médicos para hospitais em Indian Harbour, Labrador e mais tarde abriu hospitais caseiros ao longo da costa de Labrador. A missão expandiu-se muito de seu mandato inicial para o desenvolvimento de escolas, um orfanato, cooperativas, projetos de trabalho industrial e trabalho social.'),
-  (6, 'Santo Agostinho *', '354/11/13', 'Teólogos', 'Aurélio Agostinho de Hipona, conhecido universalmente como Santo Agostinho, foi um dos mais importantes teólogos e filósofos nos primeiros séculos do cristianismo, cujas obras foram muito influentes no desenvolvimento do cristianismo e filosofia ocidental. Foi bispo de Hipona, uma cidade na província romana da África.'),
-  (7, 'Churton Collins *', '1848/03/26', 'Escritor', 'Foi um crítico literário e conferencista inglês.'),
-  (8, 'Jean-Paul Charles *', '1905/06/21', 'Filósofo', 'Foi um filósofo, escritor e crítico francês, conhecido como representante do existencialismo. Acreditava que os intelectuais têm de desempenhar um papel ativo na sociedade. Era um artista militante, e apoiou causas políticas de esquerda com a sua vida e a sua obra.'),
-  (9, 'Carl Sandburg *', '1878/01/06', 'Poeta', 'Foi um poeta, historiador, novelista e folclorista estadunidense. Nasceu em Galesburg, Illinois de uma família de suecos e morreu em Flat Rock, Carolina do Norte. Tornou-se conhecido por suas poesias e sua biografia de Abraham Lincoln, pelas quais recebeu o Prêmio Pulitzer.'),
-  (10, 'Walt Disney *', '1901/12/05', 'Empresário', 'Foi um animador, produtor de cinema e empresário americano. Pioneiro da indústria de animação americana, introduziu vários desenvolvimentos na produção de desenhos animados.'),
-  (11, 'Oscar Wilde *', : '1854/10/16', 'Escritor', 'Oscar Fingal O"Flahertie Wills Wilde, ou simplesmente Oscar Wilde, foi um influente escritor, poeta e dramaturgo irlandês.'),
-  (12, 'Abraham Lincoln *', '1809/02/12', 'Político', 'Foi um político norte-americano que serviu como o 16° presidente dos Estados Unidos, posto que ocupou de 4 de março de 1861 até seu assassinato em 15 de abril de 1865. Lincoln liderou o país de forma bem-sucedida durante sua maior crise interna, a Guerra Civil Americana, preservando a integridade territorial do país, abolindo a escravidão e fortalecendo o governo nacional.'),
-  (13, 'Napoleão Bonaparte *', '1769/08/15', 'Estadista e líder militar', 'Foi um estadista e líder militar francês que ganhou destaque durante a Revolução Francesa e liderou várias campanhas militares de sucesso durante as Guerras Revolucionárias Francesas. Foi imperador dos franceses como Napoleão I de 1804 a 1814 e brevemente em 1815 durante os Cem Dias.'),
-  (14, 'H. Jackson Brown Jr *', '1940/01/01', 'Escritor', 'Antes de se tornar escritor, atuou como diretor criativo de uma agência de publicidade em Nashville . Ele se formou na Emory University em 1962 e foi membro da fraternidade Sigma Chi . [5] Em 1991, ele foi homenageado como um "Significant Sig", um prêmio concedido pela organização a seus membros notáveis.'),
-  (15, 'Moliere *', '', 'Dramaturgo', 'Jean-Baptiste Poquelin, mais conhecido como Molière, foi um dramaturgo francês, além de actor e encenador, considerado um dos mestres da comédia satírica. Teve um papel de destaque na dramaturgia francesa, até então muito dependente da temática da mitologia grega'),
-  (16, 'R. H. Grant *', '1860/08/05', 'Político', 'Foi membro do United Farmer da Assembleia Legislativa de Ontário de 1919 a 1923. Ele representou a cavalgada de Carleton . Ele serviu como ministro de gabinete no governo de EC Drury . A Robert Grant Avenue, no bairro de Fernbank em Stittsville , recebeu o nome de Grant e seu pai. A área comercial de Grant Crossing, nas proximidades, também recebeu o nome da fazenda da família que já existiu no terreno.'),
-  (17, 'Michael Jordan', '1963/02/17', 'Ex-basquetebolista ', 'É considerado por muitos como o melhor jogador de basquete de todos os tempos e por muitos como um dos mais importantes desportistas masculinos da história.'),
-  (18, 'Steve Jobs *', '1955/02/24', 'Inventor', 'Foi um inventor, empresário e magnata americano no setor da informática. Notabilizou-se como co-fundador, presidente e diretor executivo da Apple Inc. e por revolucionar seis indústrias: computadores pessoais, filmes de animação, música, telefones, tablets e publicações digitais.'),
-  (19, 'Bill Gates', '1955/10/28', 'Empresário', 'William Henry Gates III, mais conhecido como Bill Gates, é um magnata, empresário, diretor executivo, investidor, filantropo e autor americano, que ficou conhecido por fundar, junto com Paul Allen a Microsoft, a maior e mais conhecida empresa de software do mundo em termos de valor de mercado.'),
-  (20, 'Albert Einstein', '1879/03/14', 'Cientista', 'Foi uma das mentes mais brilhantes da ciência, e o seu legado inclui a explicação do efeito fotoelétrico, a formulação da teoria da relatividade espacial geral e restrita, além de grandes contribuições para a Física Estatística, por meio de sua explicação para o movimento browniano.' );

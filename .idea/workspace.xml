@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e05cc23d-ffa3-4d0b-acb4-2d8573e224ec" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/mobile-ifba-papiro.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/mobile-ifba-papiro.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/docker-compose.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/backend/docker-compose.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/feeds/servico.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/frases/servico.py" beforeDir="false" afterPath="$PROJECT_DIR$/backend/frases/servico.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/papiro.sql" beforeDir="false" afterPath="$PROJECT_DIR$/papiro.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,13 +23,13 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "last_opened_file_path": "/home/otiliano/Documentos/mobile-ifba-papiro"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/otiliano/Documentos/mobile-ifba-papiro&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
