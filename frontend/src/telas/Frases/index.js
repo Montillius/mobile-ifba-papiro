@@ -3,7 +3,7 @@ import { ActivityIndicator, FlatList, View } from "react-native";
 import Item from "./item";
 import { Frases } from "../../../frases";
 import estilos from "../../estilos";
-
+import { getFrases } from "../../api";
 
 export default function Frase(item) {
 
@@ -12,27 +12,24 @@ export default function Frase(item) {
     const [atualizando, setAtualizando] = useState(false)
 
 
-    const carregaFrases = () => {
-        const frasesLimite = Frases;
-        const paginas = proximaPagina;
+    getFrases = () => {
+    const { frases, proximaPagina} = this.state;
 
-        const frases = frasesLimite.filter((item) => item.id <= (paginas * 6))
-
-        setFrases(frases)
-        setProximaPagina(paginas + 1)
-        setAtualizando(false)
-    }
-
-
-    const atualizar = () => {
-        setFrases([])
-        setProximaPagina(1)
-        setAtualizando(true)
-
-        return carregaFrases();
-
-    };
-
+    getFrases(proximaPagina, TAMANHO_PAGINA).then((maisFrases) => {
+        console.log("frases:", maisFrases);
+        if (maisFrases) {
+            this.setState(
+                {
+                    frases: [...frases, ...maisFrases],
+                    proximaPagina: proximaPagina + 1, 
+                    atualizando: false
+                }
+            )
+        }
+    }).catch((erro) => {
+        console.error("erro acessando os feeds:", erro);
+    });
+}
     function FooterList({ Load }){        
         return (
             <View style={estilos.espaco}>
@@ -58,3 +55,4 @@ export default function Frase(item) {
         />
     </>
 }
+
