@@ -4,7 +4,7 @@ const FRASES_URL = "172.29.1.1:5000/"
 export const getFrases = async (pagina) => {
     let promise = null;
 
-    console.log(FEEDS_URL + "frases/" + pagina)
+    console.log(FEEDS_URL + "frases/"+ pagina)
 
     try {
         resposta = await fetch(FRASES_URL + "frases/" + pagina, { method: "GET" });

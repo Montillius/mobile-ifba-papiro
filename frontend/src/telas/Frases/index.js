@@ -1,36 +1,46 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import Item from "./item";
-import { Frases } from "../../../frases";
 import estilos from "../../estilos";
-import { getFrases } from "../../api";
+import axios from 'axios'
+
+const FRASES_URL = "172.29.1.1:5000/"
+
 
 export default function Frase(item) {
 
     const [proximaPagina, setProximaPagina] = useState(1);
-    const [frases, setFrases] = useState([Frases]);
+    const [frases, setFrases] = useState([]);
     const [atualizando, setAtualizando] = useState(false)
 
-
-    getFrases = () => {
-    const { frases, proximaPagina} = this.state;
-
-    getFrases(proximaPagina, TAMANHO_PAGINA).then((maisFrases) => {
-        console.log("frases:", maisFrases);
-        if (maisFrases) {
-            this.setState(
-                {
-                    frases: [...frases, ...maisFrases],
-                    proximaPagina: proximaPagina + 1, 
-                    atualizando: false
-                }
-            )
+    const getFrases = () => {
+        const paginas = proximaPagina;
+        const data = () => {
+            axios.get(`172.29.1.1:5000/frases/1`)
+            .then(res => {
+                const frases = res.data;
+                setFrases(frases);
+                setProximaPagina(paginas + 1)
+            })
         }
-    }).catch((erro) => {
-        console.error("erro acessando os feeds:", erro);
-    });
-}
-    function FooterList({ Load }){        
+    }
+    
+    useEffect(() => {
+        getFrases()
+    }, [getFrases()])
+    
+    
+
+    const atualizar = () => {
+        setFrases([])
+        setProximaPagina(1)
+        setAtualizando(true)
+
+        return carregaFrases();
+
+    };
+
+    function FooterList({ Load }) {
         return (
             <View style={estilos.espaco}>
                 <ActivityIndicator size={25} color="#000000" />
@@ -46,12 +56,9 @@ export default function Frase(item) {
             renderItem={({ item }) => <Item {...item} />}
             keyExtractor={({ id }) => String(id)}
 
-            onEndReached={carregaFrases}
+
             onEndReachedThreshold={0.1}
             ListFooterComponent={<FooterList Load={atualizando} />}
-
-            onRefresh={() => atualizar()}
-            refreshing={atualizando}
         />
     </>
 }
